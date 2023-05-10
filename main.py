@@ -7,20 +7,15 @@ import requests
 # python package for analyzing HTML and XML documents
 from bs4 import BeautifulSoup
 # url that will be scraped
-# https://en.wikipedia.org/wiki/List_of_United_States_Military_Academy_alumni
-URL = 'https://bcp.org'
+# 'https://en.wikipedia.org/wiki/List_of_United_States_Military_Academy_alumni'
+URL = 'https://quotes.toscrape.com/'
 # get info from website, uses requests library to access the URL
 res = requests.get(URL)
 # shows HTTPError if there is one
-res.raise_for_status()
+# res.raise_for_status()
 # requesting text using BeautifulSoup, html.parser searches the document
 soup = BeautifulSoup(res.text, 'html.parser')
-name = soup.findAll("span", attrs={"class":"vcard"})
+quotes = soup.find_all("span", attrs={"class":"text"})
 
-# print(len(elem))
-# turns the html tag into strings
-print(str(elem))
-# dump into excel
-
-
-
+for quote in quotes:
+    print(quote.text)
