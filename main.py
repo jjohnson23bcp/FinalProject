@@ -12,10 +12,10 @@ URL = 'https://en.wikipedia.org/wiki/List_of_United_States_Military_Academy_alum
 res = requests.get(URL)
 # requesting text using BeautifulSoup, html.parser searches the document
 soup = BeautifulSoup(res.text, 'html.parser')
+# tells code what html to scrape for
 titles = soup.find_all("span", attrs={"class":"vcard"})
 descriptions = soup.find_all("td", attrs={"class":"note"})
-# printing  
-for title in titles:
-    print(title.text)
-for description in descriptions:
-    print(description.text)
+# puts information into a table
+table = soup.table
+# prints the table
+print(table.get_text())
