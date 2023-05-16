@@ -19,5 +19,3 @@ for title in titles:
     print(title.text)
 for description in descriptions:
     print(description.text)
-
-
